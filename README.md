@@ -1,2 +1,2 @@
 # psql2solr
-Index any PostreSQL tables with Solr
+Index any PostgreSQL tables with Solr
