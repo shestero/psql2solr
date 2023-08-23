@@ -1,7 +1,8 @@
 # psql2solr
 Indexer for any PostgreSQL tables with Apache Solr.
 https://solr.apache.org
-(It uses one integer "key" and several string fields for indexing)
+
+(In each table it uses one integer "key" and any number of string fields)
 
 ## How to deploy Solr (create "test" storage):
 ```
