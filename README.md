@@ -1,2 +1,12 @@
 # psql2solr
-Index any PostgreSQL tables with Solr
+Indexer for any PostgreSQL tables with Apache Solr.
+https://solr.apache.org
+(It uses one integer "key" and several string fields for indexing)
+
+## How to deploy Solr (create "test" storage):
+```
+ docker run -p 8983:8983 -t solr:8.9
+ docker ps  
+*(from another terminal see container ID like 3b625b336d26)*
+ docker exec -it *put_ID_here* solr create -c test
+```
