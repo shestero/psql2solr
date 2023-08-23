@@ -1,0 +1,18 @@
+db:
+  url: "jdbc:postgresql://127.0.0.1/padverb?user=user"
+solr:
+  url: "http://localhost:8983/solr/test"
+tables:
+  - table:
+    name: g_shows_new
+    key: inode
+    fields:
+    - title
+    - description
+  - table:
+    name: g_episodes_new
+    key: inode
+    fields:
+    - title
+    - description
+batchSize: 1024
