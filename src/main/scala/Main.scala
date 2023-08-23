@@ -13,7 +13,7 @@ import config.Database.*
 
 
 object Main extends App {
-  val app = "psql2sold"
+  val app = "psql2solr"
   val cfg = "config.yaml"
 
   println(s"$app - PostgreSQL tables indexer. Configuration in $cfg")
@@ -25,15 +25,14 @@ object Main extends App {
     .valueOr(throw _)
 
   import deploy.*
-  implicit val st: Statement = db.statement()
-  deploy.tables.foreach { case Table(tname, key, fields ) =>
+  deploy.tables.foreach { case t @ Table(tname, _, _) =>
     println(s"Processing table $tname ...")
-    val list: String = (key :: fields).mkString(", ")
-    val rs: ResultSet = db.query(s"SELECT $list FROM $tname") // beware of injections!
+    val st: Statement = db.statement()
+    val rs: ResultSet = st.executeQuery(t.select)
     rs.metaMap.grouped(batchSize).foreach(solr.add)
+    st.close()
   }
 
   println("Done!")
-  st.close()
   close()
 }
