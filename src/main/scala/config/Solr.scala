@@ -11,11 +11,8 @@ case class Solr(url: String) {
   private def map(doc: Document): Map[String, Any] =
     doc.fields ++ Map("key" -> doc.key)
 
-  def add(docs: Iterable[Document]): Option[UpdateResponse] =
-    docs.map(map).foldLeft[SolrClient|BatchRegister](client) {
-      case (c: SolrClient , d) => c.add(d)
-      case (c: BatchRegister, d) => c.add(d)
-    }.some.collect{ case c: BatchRegister => c.commit() }
+  def add(docs: Iterable[Document]): UpdateResponse =
+    client.add(docs.map(map).toSeq :_*).commit()
 
   def add(doc: Document): UpdateResponse =
     client.add(map(doc)).commit()

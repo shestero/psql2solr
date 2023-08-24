@@ -3,6 +3,9 @@ Indexer for any PostgreSQL tables with Apache Solr.
 https://solr.apache.org
 (It uses one integer "key" and several string fields for indexing)
 
+## Solr queue example:
+http://localhost:8983/solr/test/select?q=description:monkey
+
 ## How to deploy Solr (create "test" storage):
 ```
  docker run -p 8983:8983 -t solr:8.9
