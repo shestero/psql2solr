@@ -1,7 +1,8 @@
 # psql2solr
 Indexer for any PostgreSQL tables with Apache Solr.
 https://solr.apache.org
-(It uses one integer "key" and several string fields for indexing)
+
+(In each table it uses one integer "key" and any number of string fields)
 
 ## Solr queue example:
 http://localhost:8983/solr/test/select?q=description:monkey
